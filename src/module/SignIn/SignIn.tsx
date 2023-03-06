@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Button from "@/common/components/Button";
 import Input from "@/common/components/Input";
 import { useFormik } from "formik";
+import signinSchema from "./SignIn.validation";
 
 export default function SignIn() {
   const router = useRouter();
@@ -22,6 +23,7 @@ export default function SignIn() {
 
   const { values, errors, touched, handleChange, handleSubmit } = useFormik({
     initialValues: initialValues,
+    validationSchema: signinSchema,
     onSubmit: handleOnSubmit,
   });
 
@@ -39,13 +41,15 @@ export default function SignIn() {
         label="Senha"
         name="password"
         className="mb-7"
+        type="password"
+        changeTypePassword
         value={values.password}
         error={
           touched.password && errors.password ? errors.password : undefined
         }
         onChange={handleChange}
       />
-      <Button type="submit" className="mt-5 w-full" onClick={redirectLink}>
+      <Button type="submit" className="mt-5 w-full">
         Entrar
       </Button>
     </form>

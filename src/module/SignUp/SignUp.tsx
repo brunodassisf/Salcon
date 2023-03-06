@@ -1,8 +1,11 @@
 import { useRouter } from "next/router";
 
+import { useFormik } from "formik";
+
 import Button from "@/common/components/Button";
 import Input from "@/common/components/Input";
-import { useFormik } from "formik";
+
+import signupSchema from "./SignUp.validation";
 
 export default function SignUp() {
   const router = useRouter();
@@ -24,6 +27,7 @@ export default function SignUp() {
 
   const { values, errors, touched, handleChange, handleSubmit } = useFormik({
     initialValues: initialValues,
+    validationSchema: signupSchema,
     onSubmit: handleOnSubmit,
   });
 
@@ -49,6 +53,8 @@ export default function SignUp() {
         label="Senha"
         name="password"
         className="mb-7 col-span-4 md:col-span-2"
+        type="password"
+        changeTypePassword
         value={values.password}
         error={
           touched.password && errors.password ? errors.password : undefined
@@ -59,6 +65,8 @@ export default function SignUp() {
         label="Confirma senha"
         name="confirmPassword"
         className="mb-7 col-span-4 md:col-span-2"
+        type="password"
+        changeTypePassword
         value={values.confirmPassword}
         error={
           touched.confirmPassword && errors.confirmPassword
