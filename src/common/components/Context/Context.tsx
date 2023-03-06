@@ -1,3 +1,4 @@
+import Footer from "../Footer";
 import Header from "../Header";
 
 interface IContext {
@@ -6,9 +7,10 @@ interface IContext {
 
 export default function Context({ children }: IContext) {
   return (
-    <>
+    <div className="h-full">
       <Header />
-      {children}
-    </>
+      <div className="container h-full">{children}</div>
+      {/* <Footer /> */}
+    </div>
   );
 }
