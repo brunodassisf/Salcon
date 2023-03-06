@@ -31,7 +31,7 @@ export default function Home() {
   return (
     <div className="h-full flex justify-center items-start md:items-center">
       <div>
-        <div className="text-center mb-10">
+        <div className="text-center mb-4">
           <h4 className="text-xl font-bold mb-2 text-gray-600">
             Bem-vindo ao Salcon
           </h4>
@@ -40,27 +40,7 @@ export default function Home() {
           </h6>
         </div>
         <div className="shadow-lg p-4 md:p-10 rounded-xl">
-          <AnimatePresence>
-            {!showRegister ? (
-              <motion.div
-                variants={variant}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-              >
-                <SignIn />
-              </motion.div>
-            ) : (
-              <motion.div
-                variants={variant}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-              >
-                <SignUp />
-              </motion.div>
-            )}
-          </AnimatePresence>
+          {!showRegister ? <SignIn /> : <SignUp />}
 
           <div className="text-center mt-3 underline text-gray-600">
             {showRegister
