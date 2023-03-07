@@ -15,7 +15,7 @@ export default function Header() {
   return (
     <header className="bg-white">
       <nav
-        className="mx-auto flex max-w-7xl items-center justify-between py-3 lg:px-3"
+        className="mx-auto flex max-w-7xl items-center justify-between p-3"
         aria-label="Global"
       >
         <div className="flex lg:flex-1">
