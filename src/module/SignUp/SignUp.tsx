@@ -9,6 +9,7 @@ import signupSchema from "./SignUp.validation";
 import Spinner from "@/common/components/Spinner";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import client from "@/core/fetch";
 
 export default function SignUp() {
   const [loading, isLoading] = useState(false);
@@ -29,21 +30,13 @@ export default function SignUp() {
     values: any,
     formikHelpers: FormikHelpers<any>
   ) => {
+    const { confirmPassword, ...user } = values;
     isLoading(true);
-    const response = await fetch("/api/User", {
-      method: "POST",
-      body: JSON.stringify(values),
-    });
-
-    const data = await response.json();
-
-    toast.success(data.msg);
-
-    if (data.res) {
-      formikHelpers.resetForm({ values: initialValues });
-    }
-
-    isLoading(false);
+    await client({ endpoint: "user", req: { body: user } })
+      .then((res) => {
+        formikHelpers.resetForm({ values: initialValues });
+      })
+      .finally(() => isLoading(false));
   };
 
   const { values, errors, touched, handleChange, handleSubmit } = useFormik({
